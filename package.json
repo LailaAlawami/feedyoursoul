@@ -1,0 +1,24 @@
+{
+  "name": "feedyoursoul",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "materialize-css": "^0.100.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LailaAlawami/feedyoursoul.git"
+  },
+  "author": "Laila Alawami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LailaAlawami/feedyoursoul/issues"
+  },
+  "homepage": "https://github.com/LailaAlawami/feedyoursoul#readme"
+}

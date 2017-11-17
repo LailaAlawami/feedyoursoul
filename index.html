@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>iTunes API Tutorial</title>
+    <link rel="shortcut icon" href="http://findicons.com/files/icons/2770/ios_7_icons/512/music.png">
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    
+</head>
+
+<body>
+        <nav>
+                <div class="nav-wrapper grey darken-4">
+                  <a href="#" class="brand-logo center">#FeedYourSoul</a>
+
+                </div>
+              </nav>
+    <div class="parallax-container">
+          
+        <div class="parallax">
+            
+            <img src="http://www.crescentunitedchurch.com/df_media/W1siZiIsIjIwMTcvMDgvMTEvMTMvMzEvNDgvN2RkZjFjMTYtM2VjOS00NDgwLWE2YTktMDdiYzZkMjM0OWM4L211c2ljYWwtaW5zdHJ1bWVudHMtYW5kLXN5bWJvbHMuanBnIl1d/musical-instruments-and-symbols.jpg?sha=8564b2163c142fea">
+        </div>
+    </div>
+    <nav>
+        <div class="nav-wrapper grey darken-4">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
+<div class="container"> 
+
+
+    <div id="songs" class="collection">
+
+          </div> </div>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+
+    <script>
+        // $(document).ready(... This is jQuery function that runs when the page is loaded.
+        // Do you want to load when the page is ready or when some button is clicked?
+        // Are you waiting for an input from the user???
+        $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+ 
+$("form").submit(function(event){
+    event.preventDefault()
+    var userinput = $("#search").val();
+    searchitunes(userinput)
+    $("form")[0].reset()
+    $("#search").blur()
+})
+function searchitunes(input){
+$("#songs").html("")
+            $.ajax({
+                url: "https://itunes.apple.com/search?term="+input,
+                dataType: 'JSONP'
+            })
+                .done(function (data) {
+                    console.log(data);
+                    // add code for when response from apple comes back.
+                    for (var i = 0; i < data.results.length; i++) {
+                        if (data.results[i].trackName) {
+                            $('#songs').append(`
+                            
+                            <a href="${data.results[i].trackViewUrl}" class="collection-item">${data.results[i].trackName}</a>
+                            
+                            `)
+                        }
+                    }
+                })
+                .fail(function (data) {
+                    console.log(data);
+                    $('#songs').append(data.status);
+                })
+        };// End of on ready part
+
+
+
+
+
+    </script>
+</body>
+
+</html>
