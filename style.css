@@ -1,4 +1,10 @@
 h1{
     text-align: center;
-    
+
+}
+
+@media (max-width: 840px) { 
+    .parallax-container{
+        height: 250px;
+    }
 }
